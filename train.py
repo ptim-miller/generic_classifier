@@ -165,7 +165,7 @@ checkpoint = [ModelCheckpoint(
 
 train_datagen=ImageDataGenerator(
     rescale=1./255,
-    zoom_range=.7,
+    zoom_range=.5,
     shear_range=0.05,
     rotation_range=5,
     width_shift_range=0.05,
