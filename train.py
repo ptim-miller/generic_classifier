@@ -1,3 +1,10 @@
+## Author: P. Tim Miller
+## (c) P. Tim Miller / John Wallin
+## All Rights Reserved
+## Academic use only
+## MTSU Research
+## Computational Science
+
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import warnings
@@ -18,6 +25,7 @@ with warnings.catch_warnings():
     from keras.layers import Conv2D
     from keras import regularizers
     import shutil
+    import sys, os
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
@@ -42,25 +50,39 @@ def lr_schedule(epoch):
         lrate = 0.0003
     return lrate
 
+## set path to train and val
+train_dir = 'data_mod/train/'
+validation_dir = 'data_mod/validate/'
 
-train_dir = 'data_mod/train'
-validation_dir = 'data_mod/validate'
+## determine num of categories
+categories  = os.listdir(train_dir)
+num_classes = len(categories)
+categories.sort()
+categories_val  = os.listdir(validation_dir)
+num_classes_val = len(categories_val)
 
-train_samples, folders = file_count(train_dir)
-num_classes = folders
-validation_samples, y = file_count(validation_dir)
+## validate matching count train and val
+if(num_classes != num_classes_val):
+    print("Training category count does not match Validation category count.")
+    sys.exit(0)
+
+## get image counts
+train_samples = file_count(train_dir)
+validation_samples = file_count(validation_dir)
 
 # TODO - override with command line args
 img_width, img_height = 70, 70
-epochs = 100
-batch_size = 10
+epochs = 10
+batch_size = 32
 depth=3
 color_mode='rgb'
-bw=False
 
-if (bw):
-    depth=1
-    color_mode='grayscale'
+## uncomment to use bw to train, be sure to change model_test.py
+## change convert("RGB") to convert("L") if model is built on bw
+# bw=False
+# if (bw):
+#    depth=1
+#    color_mode='grayscale'
 
 if K.image_data_format() == 'channels_first':
     input_shape = (depth, img_width, img_height)
@@ -108,22 +130,7 @@ def cnn():
     model.add(Conv2D(64, (3, 3), activation="relu", kernel_regularizer=regularizers.l2(weight_decay),
                      strides=(1, 1)))
     model.add(BatchNormalization())
-    model.add(Conv2D(64, (3, 3), activation="relu", kernel_regularizer=regularizers.l2(weight_decay),
-                     strides=(2, 2)))
-    model.add(BatchNormalization())
     model.add(Dropout(0.3))
-
-    model.add(Conv2D(128, (1, 1), activation="relu", kernel_regularizer=regularizers.l2(weight_decay),
-                     strides=(1, 1)))
-    model.add(BatchNormalization())
-    model.add(Conv2D(128, (2, 2), activation="relu", kernel_regularizer=regularizers.l2(weight_decay),
-                     strides=(1, 1)))
-    model.add(BatchNormalization())
-    model.add(Conv2D(128, (3, 3), activation="relu", kernel_regularizer=regularizers.l2(weight_decay),
-                     strides=(1, 1)))
-    model.add(BatchNormalization())
-    model.add(BatchNormalization())
-    model.add(Dropout(0.4))
 
     model.add(Flatten())
     model.add(Dense(num_classes, activation='softmax'))
@@ -146,7 +153,7 @@ try:
     shutil.copy('./train.py', save_folder + '/train.py')
 except:
     print("Unable to copy source file.")
-fileName = save_folder + '/learned.hdf5'
+fileName = save_folder + '/model.hdf5'
 
 early_stopping = keras.callbacks.EarlyStopping(monitor='val_categorical_accuracy', min_delta=0, patience=3, verbose=1, mode='auto')
 
@@ -154,12 +161,18 @@ checkpoint = [ModelCheckpoint(
     filepath=fileName,
     monitor='val_categorical_accuracy',
     verbose=1, save_best_only=True),
-    # early_stopping, ## enable if early stop desired
+    # early_stopping, ## uncomment if early stop desired
     LearningRateScheduler(lr_schedule)]
 
 train_datagen=ImageDataGenerator(
     rescale=1./255,
-    zoom_range=.5,
+    zoom_range=.7,
+    shear_range=0.05,
+    rotation_range=5,
+    width_shift_range=0.05,
+    height_shift_range=0.05,
+    vertical_flip=False,
+    horizontal_flip=False
 )
 
 test_datagen = ImageDataGenerator(
@@ -175,7 +188,8 @@ train_generator = train_datagen.flow_from_directory(
     color_mode=color_mode,
     seed=42)
 
-## To review augmented examples
+## Uncomment to review augmented examples
+## dont use rescale=1./255 if viewing
 # for i in range(9):
 #     plt.subplot(330 + 1 + i)
 #     batch = train_generator.next()
@@ -231,7 +245,6 @@ fig = plt.figure(1)
 plt.subplot(211)
 plt.plot(history.history['categorical_accuracy'])
 plt.plot(history.history['val_categorical_accuracy'])
-
 plt.title('model accuracy')
 plt.ylabel('accuracy')
 plt.xlabel('epoch')
@@ -244,19 +257,22 @@ plt.ylabel('loss')
 plt.xlabel('epoch')
 plt.legend(['train', 'test'], loc='upper left')
 
-## uncomment next line to also show plot
-# plt.show() 
+## uncomment next line to show plot
+# plt.show()
 
 ## save plot to save folder along with model and results
 fig.savefig(save_folder + '/plot.png')
 
-if(bw):
-    test_file = '/test_bw.py'
-else:
-    test_file = '/test_rgb.py'
+test_file = '/model_test.py'
 
 try:
-    shutil.copy('./results/' + test_file , save_folder + test_file)
+    with open('./' + save_folder + '/categories.txt', 'w') as f:
+        for item in categories:
+            f.write("%s\n" % item)
+except:
+    print("Unable to create categories file.")
+
+try:
+    shutil.copy('./' + test_file , save_folder + test_file)
 except:
     print("Unable to copy test file.")
-
