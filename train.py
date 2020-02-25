@@ -10,15 +10,15 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import warnings
 with warnings.catch_warnings():
     warnings.filterwarnings('ignore')
-    from keras import backend as K
     import timeit
     import time
     import numpy as np
-    from keras.callbacks import ModelCheckpoint, LearningRateScheduler
     import matplotlib.pyplot as plt
     import tensorflow as tf
     tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
     import keras
+    from keras import backend as K
+    from keras.callbacks import ModelCheckpoint, LearningRateScheduler
     from keras.models import Sequential
     from keras.preprocessing.image import ImageDataGenerator
     from keras.layers import Dense, Flatten, Dropout, BatchNormalization
