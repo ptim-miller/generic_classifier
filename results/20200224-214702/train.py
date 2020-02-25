@@ -25,6 +25,7 @@ with warnings.catch_warnings():
     from keras.layers import Conv2D
     from keras import regularizers
     import shutil
+    import sys, os
 
 config = tf.ConfigProto()
 config.gpu_options.allow_growth=True
@@ -63,7 +64,7 @@ num_classes_val = len(categories_val)
 ## validate matching count train and val
 if(num_classes != num_classes_val):
     print("Training category count does not match Validation category count.")
-    exit()
+    sys.exit(0)
 
 ## get image counts
 train_samples = file_count(train_dir)
