@@ -25,7 +25,7 @@ Each validation folder should contain an equal number of RGB jpeg images represe
 ## To Run ##
 From top level directory, run the program with:
 
-python3 train.py
+##### python3 train.py #####
 
 #### Python Packages ####
 shutil, keras, tensorflow(gpu), matplotlib. numpy, time, timeit, warnings, os
@@ -34,9 +34,9 @@ shutil, keras, tensorflow(gpu), matplotlib. numpy, time, timeit, warnings, os
 The program creates a results folder using a datetime stamp. A copy of the source code file, the best model found, model_test.py, plot image and a results files are copied to the folder. An example results file is provided based on 200 epochs with a batch size of 50 which was built on greek characters.
 
 ## To Test a Resulting Model ##
-From within the datatime results folder desired (ie results/20200224-214702), run the test program with:
+From within the datetime results folder desired (ie results/20200224-214702), run the test program with:
 
-python3 model_test.py beta.jpg
+##### python3 model_test.py beta.jpg #####
 
 Test images are provided in the results->images folder. The model_test program automatically looks to this folder when run, The beta.jpg file is a valid greek character image and omega.jpg is a generic black and white image.
 
