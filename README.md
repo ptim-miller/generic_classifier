@@ -55,3 +55,10 @@ Using TensorFlow backend.
 Total Possible : 24  
 Omega : 36.4%  
 
+## Modify Parameters ##
+In train.py, alter these variables if desired:  
+* epochs = 200  
+* batch_size = 50  
+
+Other items can be changed to alter outcome of model. See comments throughout file.  
+
