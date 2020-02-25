@@ -60,5 +60,22 @@ In train.py, alter these variables if desired:
 * epochs = 200  
 * batch_size = 50  
 
-Other items can be changed to alter outcome of model. See comments throughout file.  
+Other items can be changed to alter outcome of model. See comments throughout file. For example, 
+image augmentation can be accomplished by changing attributes in train.py:
+
+train_datagen=ImageDataGenerator(
+    rescale=1./255,
+    zoom_range=.7,
+    shear_range=0.05,
+    rotation_range=5,
+    width_shift_range=0.05,
+    height_shift_range=0.05,
+    vertical_flip=False,
+    horizontal_flip=False
+)
+
+Modifying these items to higher ranges will alter the images being trained on randomly. The current 
+settings are good for character training, but bad for general images of objects like dogs and cats.  
+
+
 
