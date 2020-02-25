@@ -1,6 +1,5 @@
 ## Author: P. Tim Miller
-## (c) P. Tim Miller / John Wallin
-## All Rights Reserved
+## All rights reserved (c) 2020 P. Tim Miller / John Wallin
 ## Academic use only
 ## MTSU Research
 ## Computational Science
