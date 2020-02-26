@@ -59,24 +59,24 @@ numpy, PIL, keras, tensorflow, warnings, os, sys
 
 #### Expected Output ####
 
-user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py beta.jpg
-Using TensorFlow backend.
-Total Possible : 24
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py beta.jpg  
+Using TensorFlow backend.  
+Total Possible : 24  
 Beta : 99.91%  
 
-user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py omega.jpg
-Using TensorFlow backend.
-Total Possible : 24
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py omega.jpg  
+Using TensorFlow backend.  
+Total Possible : 24  
 Omega : 99.99%  
 
-user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py psi.jpg
-Using TensorFlow backend.
-Total Possible : 24
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py psi.jpg  
+Using TensorFlow backend.  
+Total Possible : 24  
 Psi : 99.37%  
 
-user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py xi.jpg
-Using TensorFlow backend.
-Total Possible : 24
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py xi.jpg  
+Using TensorFlow backend.  
+Total Possible : 24  
 Xi : 99.4%  
 
 ## Modify Parameters ##
