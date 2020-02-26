@@ -2,9 +2,14 @@
 CNN - joint research project
 
 ## Current Status ##
-20200226-012834 89.5% Val_Acc   
-400 training image  
-400 validation images  
+Latest 
+File: ./results/20200226-124020/model.hdf5  
+Test Loss     : 0.618486225605011  
+Test Accuracy : 0.8970070481300354  
+Runtime: Time: 4.74 minutes  
+
+100 training image  
+100 validation images  
 epochs = 100
 batch_size = 128
 * rescale=1./255,
