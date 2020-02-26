@@ -15,6 +15,8 @@ batch_size = 128
 * vertical_flip=False,
 * horizontal_flip=False
 
+current issue - lack of image quality for training on some chars, even when only top rated are selected. Working on better image mix.
+
 ## Image Setup ##
 This software was created to automatically detect the number of categories to classify, as well as the number of training and validation images. To add images, put image folders under the data_mod folder provided.
 
