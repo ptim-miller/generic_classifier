@@ -45,42 +45,52 @@ From top level directory, run the program with:
 shutil, keras, tensorflow(gpu), matplotlib. numpy, time, timeit, warnings, os
 
 #### Expected Output ####
-The program creates a results folder using a datetime stamp. A copy of the source code file, the best model found, model_test.py, plot image and a results files are copied to the folder. An example results file is provided based on 200 epochs with a batch size of 50 which was built on greek characters.
+The program creates a results folder using a datetime stamp. A copy of the source code file, the best model found, model_test.py, plot image and a results files are copied to the folder. An example results file is provided based on 100 epochs with a batch size of 128 which was built on greek characters.
 
 ## To Test a Resulting Model ##
-From within the datetime results folder desired (ie results/20200224-214702), run the test program with:
+From within the datetime results folder desired (ie results/20200226-012834), run the test program with:
 
 ##### python3 model_test.py beta.jpg #####
 
-Test images are provided in the results->images folder. The model_test program automatically looks to this folder when run, The beta.jpg file is a valid greek character image and omega.jpg is a generic black and white image.
+Test images are provided in the results->images folder. The model_test program automatically looks to this folder when run, 
 
 #### Python Packages ####
 numpy, PIL, keras, tensorflow, warnings, os, sys
 
 #### Expected Output ####
 
-user@GPU:~/git/generic_classifier/results/20200224-214702$ python3 model_test.py beta.jpg  
-Using TensorFlow backend.  
-Total Possible : 24  
-Beta : 99.93%  
-  
-user@GPU:~/git/generic_classifier/results/20200224-214702$ python3 model_test.py omega.jpg  
-Using TensorFlow backend.  
-Total Possible : 24  
-Omega : 36.4%  
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py beta.jpg
+Using TensorFlow backend.
+Total Possible : 24
+Beta : 99.91%  
+
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py omega.jpg
+Using TensorFlow backend.
+Total Possible : 24
+Omega : 99.99%  
+
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py psi.jpg
+Using TensorFlow backend.
+Total Possible : 24
+Psi : 99.37%  
+
+user@GPU:~/git/generic_classifier/results/20200226-012834$ python3 model_test.py xi.jpg
+Using TensorFlow backend.
+Total Possible : 24
+Xi : 99.4%  
 
 ## Modify Parameters ##
 In train.py, alter these variables if desired:  
-* epochs = 200  
-* batch_size = 50  
+* epochs = 100
+* batch_size = 128  
 
 Other items can be changed to alter outcome of model. See comments throughout file. For example, 
 image augmentation can be accomplished by changing attributes in train.py:
 
 train_datagen=ImageDataGenerator(
     rescale=1./255,
-    zoom_range=.7,
-    shear_range=0.05,
+    zoom_range=.4,
+    shear_range=0.0,
     rotation_range=5,
     width_shift_range=0.05,
     height_shift_range=0.05,
