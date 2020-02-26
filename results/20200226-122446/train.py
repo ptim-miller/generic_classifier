@@ -89,11 +89,9 @@ else:
 def cnn():
     weight_decay = 1e-4
     model = Sequential()
-    model.add(Conv2D(64, (5, 5), input_shape=input_shape, activation='relu'))
+    model.add(Conv2D(30, (5, 5), input_shape=input_shape, activation='relu'))
     model.add(MaxPooling2D())
-    model.add(Conv2D(32, (4, 4), activation='relu'))
-    model.add(MaxPooling2D())
-    model.add(Conv2D(16, (3, 3), activation='relu'))
+    model.add(Conv2D(15, (3, 3), activation='relu'))
     model.add(MaxPooling2D())
     model.add(Dropout(0.2))
     model.add(Flatten())
