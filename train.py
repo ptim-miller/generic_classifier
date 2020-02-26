@@ -31,14 +31,12 @@ sess = tf.Session(config=config)
 
 def file_count(path):
     file_count = 0
-    folder_count = 0
     for subdir, dirs, files in os.walk(path):
-        folder_count += 1
         for filename in files:
             filepath = subdir + os.sep + filename
             if filepath.endswith(".jpg") or filepath.endswith(".png"):
                 file_count += 1
-    return file_count, folder_count - 1
+    return file_count
 
 def lr_schedule(epoch):
     lrate = 0.001
@@ -70,8 +68,8 @@ validation_samples = file_count(validation_dir)
 
 # TODO - override with command line args
 img_width, img_height = 70, 70
-epochs = 200
-batch_size = 50
+epochs = 100
+batch_size = 128
 depth=3
 color_mode='rgb'
 
@@ -164,11 +162,11 @@ checkpoint = [ModelCheckpoint(
 
 train_datagen=ImageDataGenerator(
     rescale=1./255,
-    zoom_range=.5,
-    shear_range=0.05,
-    rotation_range=5,
-    width_shift_range=0.05,
-    height_shift_range=0.05,
+    zoom_range=.4,
+    # shear_range=0.1,
+    rotation_range=10,
+    width_shift_range=0.1,
+    height_shift_range=0.1,
     vertical_flip=False,
     horizontal_flip=False
 )
