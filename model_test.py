@@ -1,9 +1,3 @@
-## Author: P. Tim Miller
-## All rights reserved (c) 2020 P. Tim Miller / John Wallin
-## Academic use only
-## MTSU Research
-## Computational Science
-
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import warnings
