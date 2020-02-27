@@ -1,27 +1,6 @@
 # Generic Classifier #
 CNN - joint research project
 
-## Current Status ##
-Latest 
-File: ./results/20200226-124020/model.hdf5  
-Test Loss     : 0.618486225605011  
-Test Accuracy : 0.8970070481300354  
-Runtime: Time: 4.74 minutes  
-
-100 training image  
-100 validation images  
-epochs = 100
-batch_size = 128
-* rescale=1./255,
-* zoom_range=.4,
-* rotation_range=10,
-* width_shift_range=0.1,
-* height_shift_range=0.1,
-* vertical_flip=False,
-* horizontal_flip=False
-
-current issue - lack of image quality for training on some chars, even when only top rated are selected. Working on better image mix.
-
 ## Image Setup ##
 This software was created to automatically detect the number of categories to classify, as well as the number of training and validation images. To add images, put image folders under the data_mod folder provided.
 
@@ -49,7 +28,7 @@ From top level directory, run the program with:
 ##### python3 train.py #####
 
 #### Python Packages ####
-shutil, keras, tensorflow(gpu), matplotlib. numpy, time, timeit, warnings, os
+keras, tensorflow(-gpu), matplotlib, numpy
 
 #### Expected Output ####
 The program creates a results folder using a datetime stamp. A copy of the source code file, the best model found, model_test.py, plot image and a results files are copied to the folder. An example results file is provided based on 100 epochs with a batch size of 128 which was built on greek characters.
@@ -62,7 +41,7 @@ From within the datetime results folder desired (ie results/20200226-012834), ru
 Test images are provided in the results->images folder. The model_test program automatically looks to this folder when run, 
 
 #### Python Packages ####
-numpy, PIL, keras, tensorflow, warnings, os, sys
+numpy, PIL, keras, tensorflow
 
 #### Expected Output ####
 
