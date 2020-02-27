@@ -1,6 +1,0 @@
-
-File: ./results/20200224-214702/model.hdf5
-Test Loss     : 0.4826909303665161
-Test Accuracy : 0.8584374785423279
-Runtime: Time: 18.97 minutes
-
