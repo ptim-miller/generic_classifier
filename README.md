@@ -1,27 +1,6 @@
 # Generic Classifier #
 CNN - joint research project
 
-## Current Status ##
-Latest 
-File: ./results/20200226-124020/model.hdf5  
-Test Loss     : 0.618486225605011  
-Test Accuracy : 0.8970070481300354  
-Runtime: Time: 4.74 minutes  
-
-100 training image  
-100 validation images  
-epochs = 100
-batch_size = 128
-* rescale=1./255,
-* zoom_range=.4,
-* rotation_range=10,
-* width_shift_range=0.1,
-* height_shift_range=0.1,
-* vertical_flip=False,
-* horizontal_flip=False
-
-current issue - lack of image quality for training on some chars, even when only top rated are selected. Working on better image mix.
-
 ## Image Setup ##
 This software was created to automatically detect the number of categories to classify, as well as the number of training and validation images. To add images, put image folders under the data_mod folder provided.
 
