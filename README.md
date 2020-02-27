@@ -28,7 +28,7 @@ From top level directory, run the program with:
 ##### python3 train.py #####
 
 #### Python Packages ####
-keras, tensorflow(-gpu), matplotlib. numpy
+keras, tensorflow(-gpu), matplotlib, numpy
 
 #### Expected Output ####
 The program creates a results folder using a datetime stamp. A copy of the source code file, the best model found, model_test.py, plot image and a results files are copied to the folder. An example results file is provided based on 100 epochs with a batch size of 128 which was built on greek characters.
@@ -41,7 +41,7 @@ From within the datetime results folder desired (ie results/20200226-012834), ru
 Test images are provided in the results->images folder. The model_test program automatically looks to this folder when run, 
 
 #### Python Packages ####
-numpy, PIL, keras, tensorflow, warnings, os, sys
+numpy, PIL, keras, tensorflow
 
 #### Expected Output ####
 
